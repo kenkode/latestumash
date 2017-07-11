@@ -82,6 +82,324 @@ tr,#dcontainer input,#dcontainer textarea{height:30px;width:180px;border:1px sol
 
 <script type="text/javascript">
 $(document).ready(function() {
+  $("#sub-form").prop('disabled',true);
+  $("#lname").keyup(function(){
+  if($("#lname").val() == ""){
+    $("#lnamestatus").html("<div style='color: red;'> Please insert  surname!</div>");
+    $("#sub-form").prop('disabled',true);
+  }
+  });
+
+  $("#fname").keyup(function(){
+  if($("#fname").val() == ""){
+    $("#fnamestatus").html("<div style='color: red;'> Please insert first name!</div>");
+    $("#sub-form").prop('disabled',true);
+  }
+  });
+
+  $("#identity_number").keyup(function(){
+  if($("#identity_number").val() == ""){
+    $("#identity_number").html("<div style='color: red;'> Please insert employee identity number!</div>");
+    $("#sub-form").prop('disabled',true);
+  }else{
+    var idno = $("#identity_number").val();
+    var field = "idno";
+
+    // check username name only if length is greater than or equal to 3
+    
+      $("#idstatus").html('<img src="{{ URL::to("images/loader.gif"); }}" /> Checking if identity number exists...');
+      // check username 
+      $.post("{{URL::to('employee/validate')}}", {idno: idno,field:field}, function(data, status){
+          $("#sub-form").prop('disabled',true);
+          $("#idstatus").html(data);
+      });
+  }
+  });
+
+  $("#passport_number").keyup(function(){
+  
+    var passport = $("#passport_number").val();
+    var field = "passport";
+
+    // check username name only if length is greater than or equal to 3
+    
+      $("#passportstatus").html('<img src="{{ URL::to("images/loader.gif"); }}" /> Checking if passport number exists...');
+      // check username 
+      $.post("{{URL::to('employee/validate')}}", {passport: passport,field:field}, function(data, status){
+          $("#sub-form").prop('disabled',true);
+          $("#passportstatus").html(data);
+      });
+  
+  });
+
+
+  $("#pin").keyup(function(){
+  
+    var pin = $("#pin").val();
+    var field = "pin";
+
+    // check username name only if length is greater than or equal to 3
+    
+      $("#pinstatus").html('<img src="{{ URL::to("images/loader.gif"); }}" /> Checking if kra pin exists...');
+      // check username 
+      $.post("{{URL::to('employee/validate')}}", {pin: pin,field:field}, function(data, status){
+          $("#sub-form").prop('disabled',true);
+          $("#pinstatus").html(data);
+      });
+  
+  });
+
+  $("#hospital_insurance_number").keyup(function(){
+  
+    var nhif = $("#hospital_insurance_number").val();
+    var field = "nhif";
+
+    // check username name only if length is greater than or equal to 3
+    
+      $("#nhifstatus").html('<img src="{{ URL::to("images/loader.gif"); }}" /> Checking if nhif number exists...');
+      // check username 
+      $.post("{{URL::to('employee/validate')}}", {nhif: nhif,field:field}, function(data, status){
+          $("#sub-form").prop('disabled',true);
+          $("#nhifstatus").html(data);
+      });
+  
+  });
+
+  $("#social_security_number").keyup(function(){
+  
+    var nssf = $("#social_security_number").val();
+    var field = "nssf";
+
+    // check username name only if length is greater than or equal to 3
+    
+      $("#nssfstatus").html('<img src="{{ URL::to("images/loader.gif"); }}" /> Checking if nssf number exists...');
+      // check username 
+      $.post("{{URL::to('employee/validate')}}", {nssf: nssf,field:field}, function(data, status){
+          $("#sub-form").prop('disabled',true);
+          $("#nssfstatus").html(data);
+      });
+  
+  });
+
+  $("#bank_account_number").keyup(function(){
+  
+    var acc = $("#bank_account_number").val();
+    var field = "acc";
+
+    // check username name only if length is greater than or equal to 3
+    
+      $("#accstatus").html('<img src="{{ URL::to("images/loader.gif"); }}" /> Checking if bank account number exists...');
+      // check username 
+      $.post("{{URL::to('employee/validate')}}", {acc: acc,field:field}, function(data, status){
+          $("#sub-form").prop('disabled',true);
+          $("#accstatus").html(data);
+      });
+  
+  });
+
+  $("#bank_eft_code").keyup(function(){
+  
+    var eft = $("#bank_eft_code").val();
+    var field = "eft";
+
+    // check username name only if length is greater than or equal to 3
+    
+      $("#eftstatus").html('<img src="{{ URL::to("images/loader.gif"); }}" /> Checking if eft code exists...');
+      // check username 
+      $.post("{{URL::to('employee/validate')}}", {eft: eft,field:field}, function(data, status){
+          $("#sub-form").prop('disabled',true);
+          $("#eftstatus").html(data);
+      });
+  
+  });
+
+  $("#swift_code").keyup(function(){
+  
+    var swift = $("#swift_code").val();
+    var field = "swift";
+
+    // check username name only if length is greater than or equal to 3
+    
+      $("#swiftstatus").html('<img src="{{ URL::to("images/loader.gif"); }}" /> Checking if swift code exists...');
+      // check username 
+      $.post("{{URL::to('employee/validate')}}", {swift: swift,field:field}, function(data, status){
+          $("#sub-form").prop('disabled',true);
+          $("#swiftstatus").html(data);
+      });
+  
+  });
+
+  $("#work_permit_number").keyup(function(){
+  
+    var permit = $("#work_permit_number").val();
+    var field = "permit";
+
+    // check username name only if length is greater than or equal to 3
+    
+      $("#permitstatus").html('<img src="{{ URL::to("images/loader.gif"); }}" /> Checking if work permit number exists...');
+      // check username 
+      $.post("{{URL::to('employee/validate')}}", {permit: permit,field:field}, function(data, status){
+          $("#sub-form").prop('disabled',true);
+          $("#permitstatus").html(data);
+      });
+  
+  });
+
+
+  $("#telephone_mobile").keyup(function(){
+  
+    var phone = $("#telephone_mobile").val();
+    var field = "phone";
+
+    // check username name only if length is greater than or equal to 3
+    
+      $("#phonestatus").html('<img src="{{ URL::to("images/loader.gif"); }}" /> Checking if phone number exists...');
+      // check username 
+      $.post("{{URL::to('employee/validate')}}", {phone: phone,field:field}, function(data, status){
+          $("#sub-form").prop('disabled',true);
+          $("#phonestatus").html(data);
+      });
+  
+  });
+
+  var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+  $("#email_office").keyup(function(){
+
+    if($('#email_office').val() == "" || re.test($('#email_office').val()) == false){
+        $('#eostatus').html("<div style='color: red;'>Please insert a valid email address!</div>");
+        $("#sub-form").prop('disabled',true);
+        }else{
+  
+    var emailoffice = $("#email_office").val();
+    var field = "emailoffice";
+
+    // check username name only if length is greater than or equal to 3
+    
+      $("#eostatus").html('<img src="{{ URL::to("images/loader.gif"); }}" /> Checking if office email number exists...');
+      // check username 
+      $.post("{{URL::to('employee/validate')}}", {emailoffice: emailoffice,field:field}, function(data, status){
+          $("#sub-form").prop('disabled',true);
+          $("#eostatus").html(data);
+      });
+    }
+  
+  });
+
+  $("#email_personal").keyup(function(){
+
+    if(re.test($('#email_personal').val()) == false && $('#email_personal').val() != ""){
+        $('#epstatus').html("<div style='color: red;'>Please insert a valid email address!</div>");
+        $("#sub-form").prop('disabled',true);
+        }else if($('#email_personal').val() == ""){
+        $('#epstatus').html("");
+        } else{
+  
+    var emailpersonal = $("#email_personal").val();
+    var field = "emailpersonal";
+
+    // check username name only if length is greater than or equal to 3
+    
+      $("#epstatus").html('<img src="{{ URL::to("images/loader.gif"); }}" /> Checking if personal email exists...');
+      // check username 
+      $.post("{{URL::to('employee/validate')}}", {emailpersonal: emailpersonal,field:field}, function(data, status){
+          $("#sub-form").prop('disabled',true);
+          $("#epstatus").html(data);
+      });
+    }
+  
+  });
+
+/*
+  $("#fname").keyup(function(){
+    //console.log($("#fname").val());
+    // get text username text field value 
+    var fname = $("#fname").val();
+
+    // check username name only if length is greater than or equal to 3
+    
+      $("#status").html('<img src="{{ URL::to("images/loader.gif"); }}" /> Checking availability...');
+      // check username 
+      $.post("{{URL::to('employee/validate')}}", {fname: fname}, function(data, status){
+          $("#status").html(data);
+      });
+    
+  });*/
+
+  $('#grossform').submit(function(event){
+        event.preventDefault();
+       $.ajax({
+                      url     : "{{URL::to('employee/shownet')}}",
+                      type    : "POST",
+                      dataType: "JSON",
+                      async   : false,
+                      data    : {
+                              'formdata'  : $('#grossform').serialize()
+                      }      
+       }).done(function(data) {
+            //alert(data.gross1);
+            $('#salary').val(data.salary);
+            $('#gross').val(data.gross);
+            $('#totaldeductions').val(data.deductions);
+            $('#totalallowances').val(data.allowances);
+            $('#tded').val(data.totaldeductions);
+            $('#paye').val(data.paye);
+            $('#nssf').val(data.nssf);
+            $('#nhif').val(data.nhif);
+            $('#net').val(data.net);
+        });
+     });
+  /*$('#gross').keypress(function(event){
+     var keycode = (event.keyCode ? event.keyCode : event.which);
+      if(keycode == '13'){
+      var gross = $(this).val();
+
+       displaydata(); 
+
+      function displaydata(){
+       $.ajax({
+                      url     : "{{URL::to('shownet')}}",
+                      type    : "POST",
+                      async   : false,
+                      data    : {
+                              'gross'  : gross
+                      },
+                      success : function(s){
+                      
+                      }        
+       });
+       }
+    }
+    });
+*/
+
+      var net = $('#net1').val();
+
+      // displaygross(); 
+
+      
+       $('#netform').submit(function(event){
+        event.preventDefault();
+       $.ajax({
+                      url     : "{{URL::to('employee/showgross')}}",
+                      type    : "POST",
+                      dataType: "JSON",
+                      async   : false,
+                      data    : {
+                              'formdata'  : $('#netform').serialize()
+                      }      
+       }).done(function(data) {
+            //alert(data);
+            $('#netsalary').val(data.salary1);
+            $('#gross1').val(data.gross1);
+            $('#paye1').val(data.paye1);
+            $('#nssf1').val(data.nssf1);
+            $('#nhif1').val(data.nhif1);
+            $('#netded').val(data.netded);
+            $('#net1').val(data.netv);
+        });
+     });
+
     $('#contract').hide();
 
     $('#newmode').hide();
@@ -1454,7 +1772,7 @@ $(document).ready(function() {
 
   <div class="row">
   <div class="col-lg-12">
-  <h3>New Employee <button style="margin-left:620px" type="submit" class="btn btn-primary btn-sm">Create Employee</button></h3>
+  <h3>New Employee <button style="margin-left:620px" type="submit" id="sub-form" class="btn btn-primary btn-sm">Create Employee</button></h3>
 
 <hr>
 </div>  
@@ -1477,6 +1795,7 @@ $(document).ready(function() {
     <li role="presentation"><a href="#contactinfo" aria-controls="contactinfo" role="tab" data-toggle="tab">Contact Info</a></li>
     <li role="presentation"><a href="#kins" aria-controls="kins" role="tab" data-toggle="tab">Next of Kin</a></li>
     <li role="presentation"><a href="#documents" aria-controls="documents" role="tab" data-toggle="tab">Documents</a></li>
+    <li role="presentation"><a href="#calculator" aria-controls="calculator" role="tab" data-toggle="tab">Payroll Calculator</a></li>
     </ul>
 
   <!-- Tab panes -->
@@ -1512,11 +1831,13 @@ $(document).ready(function() {
                     <div class="form-group">
                         <label for="username">Surname <span style="color:red">*</span></label>
                         <input class="form-control" placeholder="" type="text" name="lname" id="lname" value="{{{ Input::old('lname') }}}">
+                        <div id="lnamestatus"></div>
                     </div>
 
                     <div class="form-group">
                         <label for="username">First Name <span style="color:red">*</span></label>
                         <input class="form-control" placeholder="" type="text" name="fname" id="fname" value="{{{ Input::old('fname') }}}">
+                        <div id="fnamestatus"></div>
                     </div>
 
                     <div class="form-group">
@@ -1527,11 +1848,13 @@ $(document).ready(function() {
                     <div class="form-group">
                         <label for="username">ID Number <span style="color:red">*</span></label>
                         <input class="form-control" placeholder="" type="text" name="identity_number" id="identity_number" value="{{{ Input::old('identity_number') }}}">
+                        <div id="idstatus"></div>
                     </div>
 
                     <div class="form-group">
                         <label for="username">Passport number</label>
                         <input class="form-control" placeholder="" type="text" name="passport_number" id="passport_number" value="{{{ Input::old('passport_number') }}}">
+                        <div id="passportstatus"></div>
                     </div>
 
                     </div>
@@ -1603,16 +1926,19 @@ $(document).ready(function() {
                     <div class="form-group">
                         <label for="username">KRA Pin</label>
                         <input class="form-control" placeholder="" type="text" name="pin" id="pin" value="{{{ Input::old('pin') }}}">
+                        <div id="pinstatus"></div>
                     </div>
 
                      <div class="form-group">
                         <label for="username">Nssf Number</label>
                         <input class="form-control" placeholder="" type="text" name="social_security_number" id="social_security_number" value="{{{ Input::old('social_security_number') }}}">
+                        <div id="nssfstatus"></div>
                     </div>
 
                     <div class="form-group">
                         <label for="username">Nhif Number</label>
                         <input class="form-control" placeholder="" type="text" name="hospital_insurance_number" id="hospital_insurance_number" value="{{{ Input::old('hospital_insurance_number') }}}">
+                        <div id="nhifstatus"></div>
                     </div>
                      </div>
 
@@ -1699,16 +2025,19 @@ $(document).ready(function() {
                     <div class="form-group">
                         <label for="username">Bank Account Number</label>
                         <input class="form-control" placeholder="" type="text" name="bank_account_number" id="bank_account_number" value="{{{ Input::old('bank_account_number') }}}">
+                        <div id="accstatus"></div>
                     </div>
 
                     <div class="form-group">
                         <label for="username">Bank Eft Code</label>
                         <input class="form-control" placeholder="" type="text" name="bank_eft_code" id="bank_eft_code" value="{{{ Input::old('bank_eft_code') }}}">
+                        <div id="eftstatus"></div>
                     </div>
 
                     <div class="form-group">
                         <label for="username">Swift Code</label>
                         <input class="form-control" placeholder="" type="text" name="swift_code" id="swift_code" value="{{{ Input::old('swift_code') }}}">
+                        <div id="swiftstatus"></div>
                     </div>
                      
 
@@ -1798,6 +2127,7 @@ $(document).ready(function() {
                     <div class="form-group">
                         <label for="username">Work Permit Number</label>
                         <input class="form-control" placeholder="" type="text" name="work_permit_number" id="work_permit_number" value="{{{ Input::old('work_permit_number') }}}">
+                        <div id="permitstatus"></div>
                     </div>
 
                     <div class="form-group">
@@ -1853,16 +2183,19 @@ $(document).ready(function() {
                     <div class="form-group">
                         <label for="username">Phone Number</label>
                         <input class="form-control" placeholder="" type="text" name="telephone_mobile" id="telephone_mobile" value="{{{ Input::old('telephone_mobile') }}}">
+                        <div id="phonestatus"></div>
                     </div>
 
                     <div class="form-group">
                         <label for="username">Office Email <span style="color:red">*</span></label>
                         <input class="form-control" placeholder="" type="text" name="email_office" id="email_office" value="{{{ Input::old('email_office') }}}">
+                        <div id="eostatus"></div>
                     </div>
 
                     <div class="form-group">
                         <label for="username">Personal Email</label>
                         <input class="form-control" placeholder="" type="text" name="email_personal" id="email_personal" value="{{{ Input::old('email_personal') }}}">
+                        <div id="epstatus"></div>
                     </div>
 
                     <div class="form-group">
@@ -2060,6 +2393,309 @@ function dcheck(){
                     
 
 </div>
+
+
+ <div role="tabpanel" class="tab-pane" id="calculator">
+            <br><br>
+            <div class="col-lg-6">
+             <div role="tabpanel">
+
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#grosstonet" aria-controls="grosstonet" role="tab" data-toggle="tab">Gross to Net</a></li>
+    <li role="presentation"><a href="#nettogross" aria-controls="nettogross" role="tab" data-toggle="tab">Net to Gross</a></li>
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+  
+
+  <div role="tabpanel" class="tab-pane active" id="grosstonet" class="displayrecord">
+    <form id="grossform" accept-charset="UTF-8">
+    <fieldset>
+
+      <?php
+       $a = str_replace( ',', '', Input::get('gross'));
+       $s = str_replace( ',', '', Input::get('salary'));
+       $alw = str_replace( ',', '', Input::get('totalallowances'));
+       $d = str_replace( ',', '', Input::get('totaldeductions'));
+       $t = str_replace( ',', '', Input::get('tded'));
+      ?>
+
+       <div class="form-group">
+        <label for="username">Basic Pay:</label>
+        <div class="input-group">
+        <span class="input-group-addon">{{$currency->shortname}}</span>
+        @if($s == null || $s == '')
+        <input class="form-control" placeholder="" type="text" name="salary" id="salary" value="0.00">
+        @else
+        <input class="form-control" placeholder="" type="text" name="salary" id="salary" value="{{asMoney($s)}}">
+        @endif
+       </div>
+       </div>                    
+   
+      <?php
+      $i=0;
+      ?>
+
+       @foreach($allowances as $allowance)
+       <div class="form-group">
+        <label for="username">{{$allowance->allowance_name}}:</label>
+        <div class="input-group">
+        <span class="input-group-addon">{{$currency->shortname}}</span>
+        @if($a == null || $a == '')
+        <input class="form-control" placeholder="" type="text" name="allowance[]" id="allowance$i" value="0.00">
+        @else
+        <input class="form-control" placeholder="" type="text" name="allowance[]" id="allowance$i" value="{{asMoney($a)}}">
+        @endif
+       </div>
+       </div>
+       <?php $i++;?>
+       @endforeach
+
+       <div class="form-group">
+        <label for="username">Gross Pay:</label>
+        <div class="input-group">
+        <span class="input-group-addon">{{$currency->shortname}}</span>
+        @if($a == null || $a == '')
+        <input class="form-control" readonly placeholder="" type="text" name="gross" id="gross" value="0.00">
+        @else
+        <input class="form-control" readonly placeholder="" type="text" name="gross" id="gross" value="{{asMoney($a)}}">
+        @endif
+       </div>
+       </div>
+
+       @foreach($deductions as $deduction)
+       <div class="form-group">
+        <label for="username">{{$deduction->deduction_name}}:</label>
+        <div class="input-group">
+        <span class="input-group-addon">{{$currency->shortname}}</span>
+        @if($a == null || $a == '')
+        <input class="form-control" placeholder="" type="text" name="deduction[]" id="deduction$i" value="0.00">
+        @else
+        <input class="form-control" placeholder="" type="text" name="deduction[]" id="deduction$i" value="{{asMoney($a)}}">
+        @endif
+       </div>
+       </div>
+       <?php $i++;?>
+       @endforeach
+
+       @if($alw == null || $alw == '')
+       <input class="form-control" placeholder="" type="hidden" name="totalallowances" id="totalallowances" value="0.00">
+       @else
+       <input class="form-control" placeholder="" type="hidden" name="totalallowances" id="totalallowances" value="{{asMoney($alw)}}">
+       @endif
+
+       @if($d == null || $d == '')
+       <input class="form-control" placeholder="" type="hidden" name="totaldeductions" id="totaldeductions" value="0.00">
+       @else
+       <input class="form-control" placeholder="" type="hidden" name="totaldeductions" id="totaldeductions" value="{{asMoney($d)}}">
+       @endif
+
+        <div class="form-group">
+        <label for="username">Paye:</label>
+        <div class="input-group">
+            <span class="input-group-addon">{{$currency->shortname}}</span>
+         <input readonly class="form-control" placeholder="" type="text" name="paye" id="paye" value="{{ Payroll::asMoney(Payroll::payecalc($a))}}">
+        </div>
+
+        <div class="form-group insts" id="insts">
+            <label for="username">NSSF: </label>
+            <div class="input-group">
+            <span class="input-group-addon">{{$currency->shortname}}</span>
+            <input readonly class="form-control" placeholder="" type="text" name="nssf" id="nssf" value="{{Payroll::asMoney(Payroll::nssfcalc($a))}}">
+        </div>
+      </div>
+
+        <div class="form-group">
+            <label for="username">NHIF: <span style="color:red">*</span> </label>
+            <div class="input-group">
+            <span class="input-group-addon">{{$currency->shortname}}</span>
+            <input readonly class="form-control" placeholder="" type="text" name="nhif" id="nhif" value="{{Payroll::asMoney(Payroll::nhifcalc($a))}}">
+           </div>
+        </div>
+
+        <div class="form-group">
+        <label for="username">Total Deductions:</label>
+        <div class="input-group">
+        <span class="input-group-addon">{{$currency->shortname}}</span>
+        @if($t == null || $t == '')
+        <input class="form-control" readonly placeholder="" type="text" name="tded" id="tded" value="0.00">
+        @else
+        <input class="form-control" readonly placeholder="" type="text" name="tded" id="tded" value="{{asMoney($t)}}">
+        @endif
+       </div>
+       </div>
+        
+        <div class="form-group">
+        <label for="username">Net:</label>
+        <div class="input-group">
+            <span class="input-group-addon">{{$currency->shortname}}</span>
+         <input readonly class="form-control" placeholder="" type="text" name="net" id="net" value="{{Payroll::asMoney(Payroll::netcalc($a,$d))}}">
+        </div>
+      </div>
+
+    </fieldset>
+
+    <div align="right" style="margin-top:0px;display:none;" class="form-actions form-group">
+        
+          <button class="btn btn-primary btn-sm process" >Get Net</button>
+        </div>
+
+        </form>
+
+
+</div>
+
+ 
+
+<div role="tabpanel" class="tab-pane" id="nettogross">
+  <form method="POST" id="netform" accept-charset="UTF-8">
+    <fieldset>
+
+       <?php
+       $a = str_replace( ',', '', Input::get('net1'));
+       $s = str_replace( ',', '', Input::get('salary'));
+       $alw = str_replace( ',', '', Input::get('totalallowances'));
+       $d = str_replace( ',', '', Input::get('totaldeductions'));
+       $t = str_replace( ',', '', Input::get('tded'));
+      ?>
+
+      <div class="form-group">
+        <label for="username">Basic Pay:</label>
+        <div class="input-group">
+        <span class="input-group-addon">{{$currency->shortname}}</span>
+        @if($s == null || $s == '')
+        <input class="form-control" readonly placeholder="" type="text" name="netsalary" id="netsalary" value="0.00">
+        @else
+        <input class="form-control" readonly placeholder="" type="text" name="netsalary" id="netsalary" value="{{asMoney($s)}}">
+        @endif
+       </div>
+       </div>                    
+   
+      <?php
+      $i=0;
+      ?>
+
+       @foreach($allowances as $allowance)
+       <div class="form-group">
+        <label for="username">{{$allowance->allowance_name}}:</label>
+        <div class="input-group">
+        <span class="input-group-addon">{{$currency->shortname}}</span>
+        @if($a == null || $a == '')
+        <input class="form-control" placeholder="" type="text" name="netallowance[]" id="netallowance$i" value="0.00">
+        @else
+        <input class="form-control" placeholder="" type="text" name="netallowance[]" id="netallowance$i" value="{{asMoney($a)}}">
+        @endif
+       </div>
+       </div>
+       <?php $i++;?>
+       @endforeach
+
+
+       <div class="form-group">
+        <label for="username">Gross Pay:</label>
+        <div class="input-group">
+          <span class="input-group-addon">{{$currency->shortname}}</span>
+         @if($a == null || $a == '')
+        <input class="form-control" readonly placeholder="" type="text" name="gross1" id="gross1" value="0.00">
+        @else
+        <input class="form-control" readonly placeholder="" type="text" name="gross1" id="gross1" value="{{ asMoney($gross)}}">
+        @endif
+       </div>
+       </div>  
+
+       @foreach($deductions as $deduction)
+       <div class="form-group">
+        <label for="username">{{$deduction->deduction_name}}:</label>
+        <div class="input-group">
+        <span class="input-group-addon">{{$currency->shortname}}</span>
+        @if($a == null || $a == '')
+        <input class="form-control" placeholder="" type="text" name="netdeduction[]" id="netdeduction$i" value="0.00">
+        @else
+        <input class="form-control" placeholder="" type="text" name="netdeduction[]" id="netdeduction$i" value="{{asMoney($a)}}">
+        @endif
+       </div>
+       </div>
+       <?php $i++;?>
+       @endforeach                  
+
+        <div class="form-group">
+        <label for="username">Paye:</label>
+        <div class="input-group">
+            <span class="input-group-addon">{{$currency->shortname}}</span>
+         @if($a == null || $a == '')
+        <input readonly class="form-control" placeholder="" type="text" name="paye1" id="paye1" value="0.00">
+        @else
+         <input readonly class="form-control" placeholder="" type="text" name="paye1" id="paye1" value="{{ asMoney($paye1)}}">
+         @endif
+        </div>
+      </div>
+
+        <div class="form-group insts" id="insts">
+            <label for="username">NSSF: </label>
+            <div class="input-group">
+            <span class="input-group-addon">{{$currency->shortname}}</span>
+            @if($a == null || $a == '')
+        <input readonly class="form-control" placeholder="" type="text" name="nssf1" id="nssf1" value="0.00">
+        @else
+            <input readonly class="form-control" placeholder="" type="text" name="nssf1" id="nssf1" value="{{asMoney($nssf1)}}">
+             @endif
+        </div>
+      </div>
+
+        <div class="form-group">
+            <label for="username">NHIF: <span style="color:red">*</span> </label>
+            <div class="input-group">
+            <span class="input-group-addon">{{$currency->shortname}}</span>
+            @if($a == null || $a == '')
+        <input readonly class="form-control" placeholder="" type="text" name="nhif1" id="nhif1" value="0.00">
+        @else
+            <input readonly class="form-control" placeholder="" type="text" name="nhif1" id="nhif1" value="{{asMoney($nhif1)}}">
+            @endif
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="username">Total Deductions:</label>
+        <div class="input-group">
+        <span class="input-group-addon">{{$currency->shortname}}</span>
+        @if($t == null || $t == '')
+        <input class="form-control" readonly placeholder="" type="text" name="netded" id="netded" value="0.00">
+        @else
+        <input class="form-control" readonly placeholder="" type="text" name="netded" id="netded" value="{{asMoney($t)}}">
+        @endif
+       </div>
+       </div>
+        
+        <div class="form-group">
+        <label for="username">Net:</label>
+        <div class="input-group">
+            <span class="input-group-addon">{{$currency->shortname}}</span>
+          @if($a == null || $a == '')
+        <input class="form-control" placeholder="" type="text" name="net1" id="net1" value="0.00">
+        @else
+        <input class="form-control" placeholder="" type="text" name="net1" id="net1" value="{{asMoney($a)}}">
+        @endif
+       </div> 
+        </div>
+      </div>
+
+    </fieldset>
+    <div align="right" style="margin-top:0px;display:none;" class="form-actions form-group">
+        
+          <button class="btn btn-primary btn-sm process" >Get Gross</button>
+        </div>
+
+        </form>
+</div>
+
+
+  </div>
+
+</div>
+            </div>
+            </div>
 
 
 </div>

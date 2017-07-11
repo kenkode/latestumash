@@ -14,7 +14,7 @@ class ReportsController extends \BaseController {
 
     if(Input::get('format') == "excel"){
       if(Input::get('status') == 'Active'){
-         $data = Employee::where('in_employment','=','Y')->get();
+         $data = Employee::where('in_employment','=','Y')->where('is_approved','=','1')->get();
 
          $organization = Organization::find(1);
 
@@ -105,7 +105,7 @@ class ReportsController extends \BaseController {
 
   })->download('xls');
       }else if(Input::get('status') == 'Deactive'){
-           $data = Employee::where('in_employment','=','N')->get();
+           $data = Employee::where('in_employment','=','N')->where('is_approved','=','1')->get();
 
          $organization = Organization::find(1);
 
@@ -197,7 +197,7 @@ class ReportsController extends \BaseController {
 
   })->download('xls');
       }else if(Input::get('status') == 'All'){
-        $data = Employee::all();
+        $data = Employee::where('is_approved','=','1')->get();
 
         $organization = Organization::find(1);
 
@@ -299,7 +299,7 @@ class ReportsController extends \BaseController {
     }else{
 
     if(Input::get('status') == 'Active'){
-    $employees = Employee::where('in_employment','=','Y')->get();
+    $employees = Employee::where('in_employment','=','Y')->where('is_approved','=','1')->get();
 
     $organization = Organization::find(1);
 
@@ -308,7 +308,7 @@ class ReportsController extends \BaseController {
     return $pdf->stream('Employee List '.date('Y-m-d').'.pdf');
 
     }else if(Input::get('status') == 'Deactive'){
-    $employees = Employee::where('in_employment','N')->get();
+    $employees = Employee::where('in_employment','N')->where('is_approved','=','1')->get();
 
     $organization = Organization::find(1);
 
@@ -318,7 +318,7 @@ class ReportsController extends \BaseController {
 
     }else if(Input::get('status') == 'All'){
 
-		$employees = Employee::all();
+		$employees = Employee::where('is_approved','=','1')->get();
 
 		$organization = Organization::find(1);
 
@@ -331,7 +331,7 @@ class ReportsController extends \BaseController {
 
 	public function emp_id()
 	{
-		$employees = Employee::all();
+		$employees = Employee::where('is_approved','=','1')->get();
 
 		return View::make('pdf.ind_emp', compact('employees'));
 	}
@@ -354,7 +354,7 @@ class ReportsController extends \BaseController {
 
     public function selEmp()
     {
-        $employees = Employee::all();
+        $employees = Employee::where('is_approved','=','1')->get();
 
         return View::make('pdf.selectEmployee', compact('employees'));
     }
@@ -471,7 +471,7 @@ class ReportsController extends \BaseController {
 
     public function propertyperiod()
     {
-       $employees = Employee::all();
+       $employees = Employee::where('is_approved','=','1')->get();
         return View::make('pdf.selectPropertyPeriod',compact('employees'));
     }
 
@@ -734,7 +734,7 @@ class ReportsController extends \BaseController {
 
     public function appraisalperiod()
     {
-       $employees = Employee::all();
+       $employees = Employee::where('is_approved','=','1')->get();
         return View::make('pdf.selectAppraisalPeriod',compact('employees'));
     }
 
@@ -980,7 +980,7 @@ class ReportsController extends \BaseController {
 
     public function selempkin()
     {
-       $employees = Employee::all();
+       $employees = Employee::where('is_approved','=','1')->get();
         return View::make('pdf.selectKinEmployee',compact('employees'));
     }
 
@@ -1097,7 +1097,7 @@ class ReportsController extends \BaseController {
 
     public function period_payslip()
   {
-    $employees = DB::table('employee')->get();
+    $employees = DB::table('employee')->where('is_approved','=','1')->get();
     $branches = Branch::all();
     $departments = Department::all();
 
@@ -9699,7 +9699,7 @@ class ReportsController extends \BaseController {
 
     public function employeeselect()
     {
-        $employees = Employee::all();
+        $employees = Employee::where('is_approved','=','1')->get();
         return View::make('leavereports.employeeSelect',compact('employees'));
     }
 

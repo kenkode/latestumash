@@ -170,7 +170,7 @@ class PayrollController extends \BaseController {
         $paye = number_format(Payroll::payecalc($gross),2);
         $nssf = number_format(Payroll::nssfcalc($gross),2);
         $nhif = number_format(Payroll::nhifcalc($gross),2);
-        $net  = Payroll::asMoney(Payroll::netcalc($gross));
+        $net  = Payroll::asMoney(Payroll::ncalc($gross));
 
          return json_encode(["paye"=>$paye,"nssf"=>$nssf,"nhif"=>$nhif,"net"=>$net,"gross"=>number_format($gross, 2)]);
         //echo json_encode(array("paye"=>$paye,"nssf"=>$nssf,"nhif"=>$nhif));

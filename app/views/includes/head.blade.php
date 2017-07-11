@@ -88,6 +88,16 @@
     {{ HTML::script('js/buttons.html5.min.js') }}
     {{ HTML::script('js/buttons.print.min.js') }}
 
+    {{ HTML::style('js/jquery.autocomplete.css') }}
+
+{{ HTML::script('js/jquery.autocomplete.js') }}
+
+{{ HTML::style('js/prettify.css') }}
+
+{{ HTML::script('js/prettify.js') }}
+
+{{ HTML::script('jquery-ui-1.11.4.custom/jquery-ui.min.js') }}
+
     <script type="text/javascript">
 
 

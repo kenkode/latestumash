@@ -9,6 +9,21 @@
 }
 </style>
 
+<style>
+    .ui-autocomplete {
+        max-height: 300px;
+        overflow-y: auto;
+        /* prevent horizontal scrollbar */
+        overflow-x: hidden;
+    }
+    /* IE 6 doesn't support max-height
+     * we use height instead, but this forces the menu to always be this tall
+     */
+    * html .ui-autocomplete {
+        height: 300px;
+    }
+    </style>
+
 <body>
 
 
@@ -242,3 +257,278 @@
         <!-- /.navbar-static-top -->
     </div>
     <br><br><br>
+
+    <div class="row" style="float: right;margin-top: 10px !important">
+  
+  <div class="col-lg-12">
+
+  <div class="form-group" style="margin:20px 0px;width: 300px">
+  <div class="right-inner-addon ">
+                        <i class="glyphicon glyphicon-search"></i>
+                        
+      <input type="text" class="form-control" id="auto1" placeholder="Search........">
+      </div>
+    </div>
+
+  </div>
+</div>
+
+{{ HTML::script('js/scripts.js') }}
+
+
+
+<script type="text/javascript">
+window.prettyPrint && prettyPrint()
+</script>
+
+
+<script type="text/javascript">
+
+  var data = [
+    {
+    label: "Account Settings",
+    value: "{{URL::to('accounts')}}"},
+    {
+    label: "Activate Employee",
+    value: "{{URL::to('deactives')}}"},
+    {
+    label: "Allowances",
+    value: "{{URL::to('employee_allowances')}}"},
+    {
+    label: "Allowance Report",
+    value: "{{URL::to('payrollReports/selectAllowance')}}"},
+    {
+    label: "Allowance Settings",
+    value: "{{URL::to('allowances')}}"},
+    {
+    label: "Appraisals",
+    value: "{{URL::to('Appraisals')}}"},
+    {
+    label: "Appraisal Categories",
+    value: "{{URL::to('appraisalcategories')}}"},
+    {
+    label: "Appraisal Report",
+    value: "{{URL::to('reports/Appraisals/selectPeriod')}}"},
+    {
+    label: "Appraisal Settings",
+    value: "{{URL::to('AppraisalSettings')}}"},
+    {
+    label: "Banks",
+    value: "{{URL::to('banks')}}"},
+    {
+    label: "Bank Branches",
+    value: "{{URL::to('bank_branch')}}"},
+    {
+    label: "Benefit Settings",
+    value: "{{URL::to('benefitsettings')}}"},
+    {
+    label: "Branches",
+    value: "{{URL::to('branches')}}"},
+    {
+    label: "Citizenship",
+    value: "{{URL::to('citizenships')}}"},
+    {
+    label: "Company Property",
+    value: "{{URL::to('Properties')}}"},
+    {
+    label: "Company Property Report",
+    value: "{{URL::to('reports/CompanyProperty/selectPeriod')}}"},
+    {
+    label: "Contract Reminders",
+    value: "{{URL::to('reminderview')}}"},
+    {
+    label: "Dashboard",
+    value: "{{URL::to('dashboard')}}"},
+    {
+    label: "Data Migration",
+    value: "{{URL::to('migrate')}}"},
+    {
+    label: "Deductions",
+    value: "{{URL::to('employee_deductions')}}"},
+    {
+    label: "Deduction Report",
+    value: "{{URL::to('payrollReports/selectDeduction')}}"},
+    {
+    label: "Deduction Settings",
+    value: "{{URL::to('deductions')}}"},
+    {
+    label: "Departments",
+    value: "{{URL::to('departments')}}"},
+    {
+    label: "Document Reminders",
+    value: "{{URL::to('reminderdoc/indexdoc')}}"},
+    {
+    label: "Earnings",
+    value: "{{URL::to('other_earnings')}}"},
+    {
+    label: "Earning Report",
+    value: "{{URL::to('payrollReports/selectEarning')}}"},
+    {
+    label: "Earning Settings",
+    value: "{{URL::to('earningsettings')}}"},
+    {
+    label: "Email Payslip",
+    value: "{{URL::to('email/payslip')}}"},
+    {
+    label: "Employees",
+    value: "{{URL::to('employees')}}"},
+    {
+    label: "Employee Detail Form",
+    value: "{{URL::to('public/uploads/employees/documents/umash appointment letter.docx')}}"},
+    {
+    label: "Employee List Report",
+    value: "{{URL::to('reports/selectEmployeeStatus')}}"},
+    {
+    label: "Employees on Leave",
+    value: "{{URL::to('leaveReports/selectLeaveType')}}"},
+    {
+    label: "Employee Type",
+    value: "{{URL::to('employee_type')}}"},
+    {
+    label: "Holiday Management",
+    value: "{{URL::to('holidays')}}"},
+    {
+    label: "Individual Employee Report",
+    value: "{{URL::to('employee/select')}}"},
+    {
+    label: "Individual Employee On Leave",
+    value: "{{URL::to('leaveReports/selectEmployee')}}"},
+    {
+    label: "Itax Template",
+    value: "{{URL::to('itax/download')}}"},
+    {
+    label: "Job Groups",
+    value: "{{URL::to('job_group')}}"},
+    {
+    label: "Leave Applications",
+    value: "{{URL::to('leavemgmt')}}"},
+    {
+    label: "Leave Application Report",
+    value: "{{URL::to('leaveReports/selectApplicationPeriod')}}"},
+    {
+    label: "Leave Amended",
+    value: "{{URL::to('leaveamends')}}"},
+    {
+    label: "Leave Approved",
+    value: "{{URL::to('leaveapprovals')}}"},
+    {
+    label: "Leaves Approved Report",
+    value: "{{URL::to('leaveReports/selectApprovedPeriod')}}"},
+    {
+    label: "Leaves Balances Report",
+    value: "{{URL::to('leaveReports/selectLeave')}}"},
+    {
+    label: "Leave Rejected",
+    value: "{{URL::to('leaveReports/selectRejectedPeriod')}}"},
+    {
+    label: "Leaves Rejected Report",
+    value: "{{URL::to('leaveReports/selectRejectedPeriod')}}"},
+    {
+    label: "Next of Kin Report",
+    value: "{{URL::to('reports/nextofkin/selectEmployee')}}"},
+    {
+    label: "NHIF Returns",
+    value: "{{URL::to('payrollReports/selectNhifPeriod')}}"},
+    {
+    label: "NHIF Settings",
+    value: "{{URL::to('nhif')}}"},
+    {
+    label: "Non Taxable Income",
+    value: "{{URL::to('employeenontaxables')}}"},
+    {
+    label: "Non Taxable Income Report",
+    value: "{{URL::to('payrollReports/selectnontaxableincome')}}"},
+    {
+    label: "Non Taxable Income Settings",
+    value: "{{URL::to('nontaxables')}}"},
+    {
+    label: "NSSF Returns",
+    value: "{{URL::to('payrollReports/selectNssfPeriod')}}"},
+    {
+    label: "NSSF Settings",
+    value: "{{URL::to('nssf')}}"},
+    {
+    label: "Occurences",
+    value: "{{URL::to('occurences')}}"},
+    {
+    label: "Occurence Report",
+    value: "{{URL::to('reports/selectEmployeeOccurence')}}"},
+    {
+    label: "Occurence Settings",
+    value: "{{URL::to('occurencesettings')}}"},
+    {
+    label: "Organization Settings",
+    value: "{{URL::to('organizations')}}"},
+    {
+    label: "Overtimes",
+    value: "{{URL::to('overtimes')}}"},
+    {
+    label: "Overtime Report",
+    value: "{{URL::to('payrollReports/selectOvertime')}}"},
+    {
+    label: "PAYE Returns",
+    value: "{{URL::to('payrollReports/selectPayePeriod')}}"},
+    {
+    label: "Payroll Calculator",
+    value: "{{URL::to('payrollcalculator')}}"},
+    {
+    label: "Payroll Remittance",
+    value: "{{URL::to('payrollReports/selectRemittancePeriod')}}"},
+    {
+    label: "Payroll Summary",
+    value: "{{URL::to('payrollReports/selectSummaryPeriod')}}"},
+    {
+    label: "Payslips",
+    value: "{{URL::to('payrollReports/selectPeriod')}}"},
+    {
+    label: "Portal",
+    value: "{{URL::to('portal')}}"},
+    {
+    label: "Profile",
+    value: "{{URL::to('users/profile/1')}}"},
+    {
+    label: "Process Advance Salaries",
+    value: "{{URL::to('advance')}}"},
+    {
+    label: "Process Payroll",
+    value: "{{URL::to('payroll')}}"},
+    {
+    label: "Relief",
+    value: "{{URL::to('employee_relief')}}"},
+    {
+    label: "Relief Report",
+    value: "{{URL::to('payrollReports/selectRelief')}}"},
+    {
+    label: "Relief Settings",
+    value: "{{URL::to('reliefs')}}"},
+    {
+    label: "Salary Advance Summary Report",
+    value: "{{URL::to('advanceReports/selectSummaryPeriod')}}"},
+    {
+    label: "Salary Advance Remittance Report",
+    value: "{{URL::to('advanceReports/selectRemittancePeriod')}}"},
+    {
+    label: "System Settings",
+    value: "{{URL::to('system')}}"},
+    ];
+
+    $(function() {
+      
+      $("#auto1").autocomplete({
+        source: data,
+        focus: function(event, ui) {
+          // prevent autocomplete from updating the textbox
+          event.preventDefault();
+          // manually update the textbox
+          $(this).val(ui.item.label);
+        },
+        select: function(event, ui) {
+          // prevent autocomplete from updating the textbox
+          event.preventDefault();
+          // manually update the textbox and hidden field
+          window.location.href = ui.item.value;
+          $(this).val(ui.item.label);
+        }
+      });
+    });
+</script>

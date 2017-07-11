@@ -1,0 +1,71 @@
+Kindly update our system with below
+
+1.       Dashboard to have a field for find or search
+
+2.       Login credentials now working
+
+    * Reset password or generate new password not working
+    * I need to approve a new employee. As of now if I gave someone
+mandate to create new employees, I cannot verify that new employees created
+are credible.
+
+3.       Notifications for expired contracts / driving license or any
+document that needs renewal, this is not working
+
+4.       I can still be able to view inactive employees at Employees
+Portal and not be notified that the employee is not active.
+
+5.       Payroll portal kindly add date to all fields.
+
+    * deductions and earnings table does not have date. cannot not know
+which ot/allowance/deductions/earnings is for when until you open.
+Kindly include view by date/month/year
+
+6.       When a leave is applied, where does that notification goes to?
+How will HR or Super admin know that a leave has been applied? should there
+be a notification panel/pop up?
+
+    * approvals and expiry for documents not working as I assumed it
+would.
+If there is an approval to be done, where is the notification panel? if I
+need to approve a filled leave, how will I know it has been applied?
+
+7.       I should be able to update/view an inactive employee without
+activating him/her first
+
+    * enter button and tab button needs to be adjusted. when you press
+tab on a name the system does not pick it you have to first press enter then
+tab
+    * reminders and notifications for the systems are not working ok
+
+    * should notify by email that there is something to be done
+
+    * when putting information for new employee the system to check on
+the back ground for ID number, bank account number and PIN number if
+employee is already in the system. currently you have to upload all info
+then the system notifies you otherwise
+    * calculator for salaries should be able to autofill on new employee
+platform. It makes no logic have it on a different platfoam such that user
+will keep checking back n forth for calculated info
+    * when fetching reports system still picks inactive employee then it
+brings an error page
+    * KINDLY CHECK THIS SYSTEM NOT TO BRING ERROR PAGES WHATSOEVER
+    * Can calculator be on the field for new employee then after you
+have used it to calculate, it auto fills the information to the new
+employee?
+
+
+    * calculator to also include
+
+                                                                i.
+house allowance
+
+                                                              ii.
+travelling allowance
+
+                                                             iii.
+salary advance
+
+                                                            iv.      or
+one can add any deduction then it simply autofills e.g from date of
+employement.

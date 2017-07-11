@@ -106,16 +106,11 @@ ul {
     });
     </script>
                   
+
+
 {{ HTML::script('js/scripts.js') }}
 
 
-<div class="row">
-  
-  <div class="col-lg-12">
-    <hr>
-
-  </div>
-</div>
 
 
 <div class="row">

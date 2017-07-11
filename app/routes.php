@@ -13,7 +13,7 @@
 
 Route::get('/', function()
 {
-
+    
     $count = count(User::all());
 
     if($count <= 1 ){
@@ -57,9 +57,17 @@ Route::get('/', function()
 });
 
 
+Route::filter('loggedin', function()
+{
+    if (!Confide::user())
+    {
+       $sessionTimeout = 1;
+       $organization = Organization::find(1);
+       return View::make('login',compact('organization'));
+     }
+});
 
-
-Route::get('/dashboard', function()
+Route::get('/dashboard', array('before' => 'loggedin', function()
 {
 
   $organization = Organization::find(1);
@@ -152,7 +160,7 @@ Route::get('/dashboard', function()
         }
       }
     }
-});
+}));
 //
 
 Route::get('fpassword', function(){
@@ -166,6 +174,10 @@ Route::get('users/forgot_password',function(){
   $organization=DB::table('organizations')->where('id','=',1)->first();
   return View::make('forgot',compact('organization'));
 });
+
+Route::group(['before' => 'loggedin'], function() {
+
+Route::get('search', 'SearchController@search');
 
 Route::resource('users', 'UsersController');
 Route::get('users/create', 'UsersController@create');
@@ -190,9 +202,8 @@ Route::post('users/password/{user}', 'UsersController@changePassword');
 Route::get('users/profile/{user}', 'UsersController@profile');
 Route::get('users/show/{user}', 'UsersController@show');
 
-
-
 Route::post('users/pass', 'UsersController@changePassword2');
+});
 
 Route::group(['before' => 'manage_roles'], function() {
 
@@ -204,9 +215,11 @@ Route::get('roles/delete/{id}', 'RolesController@destroy');
 
 });
 
+Route::group(['before' => 'loggedin'], function() {
 Route::get('import', function(){
 
     return View::make('import');
+});
 });
 
 
@@ -223,7 +236,7 @@ Route::get('system', function(){
 });
 
 
-
+Route::group(['before' => 'loggedin'], function() {
 Route::get('license', function(){
 
 
@@ -232,7 +245,7 @@ Route::get('license', function(){
     return View::make('system.license', compact('organization'));
 });
 
-
+});
 
 
 /**
@@ -256,13 +269,13 @@ Route::get('language/{lang}',
           );
 
 
-
+Route::group(['before' => 'loggedin'], function() {
 Route::resource('currencies', 'CurrenciesController');
 Route::get('currencies/edit/{id}', 'CurrenciesController@edit');
 Route::post('currencies/update/{id}', 'CurrenciesController@update');
 Route::get('currencies/delete/{id}', 'CurrenciesController@destroy');
 Route::get('currencies/create', 'CurrenciesController@create');
-
+});
 
 
 /*
@@ -305,22 +318,23 @@ Route::get('accounts/create/{id}', 'AccountsController@create');
 /*
 * journals routes
 */
+Route::group(['before' => 'loggedin'], function() {
 Route::resource('journals', 'JournalsController');
 Route::post('journals/update/{id}', 'JournalsController@update');
 Route::get('journals/delete/{id}', 'JournalsController@destroy');
 Route::get('journals/edit/{id}', 'JournalsController@edit');
 Route::get('journals/show/{id}', 'JournalsController@show');
 
-
+});
 
 /*
 * license routes
 */
-
+Route::group(['before' => 'loggedin'], function() {
 Route::post('license/key', 'OrganizationsController@generate_license_key');
 Route::post('license/activate', 'OrganizationsController@activate_license');
 Route::get('license/activate/{id}', 'OrganizationsController@activate_license_form');
-
+});
 /*
 * Audits routes
 */
@@ -388,7 +402,7 @@ Route::post('leavetypes/update/{id}', 'LeavetypesController@update');
 
 });
 
-
+Route::group(['before' => 'loggedin'], function() {
 Route::resource('leaveapplications', 'LeaveapplicationsController');
 Route::get('leaveapplications/edit/{id}', 'LeaveapplicationsController@edit');
 Route::get('leaveapplications/delete/{id}', 'LeaveapplicationsController@destroy');
@@ -412,7 +426,8 @@ Route::get('leaveapprovals', function(){
 
   return View::make('leaveapplications.approved', compact('leaveapplications'));
 
-} );
+});
+});
 
 Route::group(['before' => 'amend_application'], function() {
 
@@ -422,7 +437,7 @@ Route::get('leaveamends', function(){
 
   return View::make('leaveapplications.amended', compact('leaveapplications'));
 
-} );
+});
 
 });
 
@@ -453,7 +468,7 @@ Route::get('migrate', function(){
 * Template routes and generators 
 */
 
-
+Route::group(['before' => 'loggedin'], function() {
 Route::get('template/employees', function(){
 
   $bank_data = Bank::all();
@@ -1564,7 +1579,7 @@ Route::post('import/banks', function(){
 
 });
 
-
+});
 
 /*
 * #####################################################################################################################
@@ -1573,6 +1588,7 @@ Route::post('import/banks', function(){
 * banks routes
 */
 
+Route::group(['before' => 'loggedin'], function() {
 Route::resource('banks', 'BanksController');
 Route::post('banks/update/{id}', 'BanksController@update');
 Route::get('banks/delete/{id}', 'BanksController@destroy');
@@ -1717,7 +1733,9 @@ Route::get('deactives', function(){
   return View::make('employees.activate', compact('employees'));
 
 } );
+});
 
+Route::group(['before' => 'loggedin'], function() {
 
 Route::resource('employees', 'EmployeesController');
 Route::post('employees/update/{id}', 'EmployeesController@update');
@@ -1823,13 +1841,18 @@ Route::post('createDeduction', 'EmployeeDeductionsController@creatededuction');
 /*
 * payroll routes
 */
+});
 
+Route::group(['before' => 'loggedin'], function() {
 
 Route::resource('payroll', 'PayrollController');
 Route::post('deleterow', 'PayrollController@del_exist');
 Route::post('showrecord', 'PayrollController@display');
 Route::post('shownet', 'PayrollController@disp');
 Route::post('showgross', 'PayrollController@dispgross');
+Route::post('employee/shownet', 'EmployeesController@disp');
+Route::post('employee/validate', 'EmployeesController@validate');
+Route::post('employee/showgross', 'EmployeesController@dispgross');
 Route::post('payroll/preview', 'PayrollController@create');
 Route::get('payrollpreviewprint/{period}', 'PayrollController@previewprint');
 Route::post('createNewAccount', 'PayrollController@createaccount');
@@ -1943,7 +1966,7 @@ Route::get('advanceReports/selectSummaryPeriod', 'ReportsController@period_advsu
 Route::post('advanceReports/advanceSummary', 'ReportsController@payAdvSummary');
 
 
-
+});
 
 
 /*
@@ -2376,7 +2399,7 @@ Route::get('reports/savingproduct/{id}', 'ReportsController@savingproduct');
 Route::post('reports/financials', 'ReportsController@financials');
 
 
-
+Route::group(['before' => 'loggedin'], function() {
 Route::get('portal', function(){
 
     //$members = DB::table('members')->where('is_active', '=', TRUE)->get();
@@ -2390,7 +2413,7 @@ Route::get('portal/activate/{id}', 'MembersController@activateportal');
 Route::get('portal/deactivate/{id}', 'MembersController@deactivateportal');
 Route::get('css/reset/{id}', 'MembersController@reset');
 
-
+});
 
 
 
@@ -2578,6 +2601,7 @@ Route::resource('payments', 'PaymentsController');*/
 Leave Reports
 */
 
+Route::group(['before' => 'loggedin'], function() {
 Route::get('leaveReports', function(){
 
     return View::make('leavereports.leavereports');
@@ -2600,6 +2624,7 @@ Route::post('leaveReports/Employeesonleave', 'ReportsController@employeesleave')
 
 Route::get('leaveReports/selectEmployee', 'ReportsController@employeeselect');
 Route::post('leaveReports/IndividualEmployeeLeave', 'ReportsController@individualleave');
+});
 
 Route::get('api/dropdown', function(){
     $id = Input::get('option');
@@ -2688,6 +2713,9 @@ Route::get('api/pay', function(){
     return number_format($employee->basic_pay,2);
 });
 
+
+Route::group(['before' => 'loggedin'], function() {
+
 Route::get('empedit/{id}', function($id){
 
     $employee = Employee::find($id);
@@ -2761,12 +2789,14 @@ Route::get('css/balances', function(){
   return View::make('css.balances', compact('employee', 'leavetypes'));
 });
 
-
+});
 
 
 /*
 *overtimes
 */
+
+Route::group(['before' => 'loggedin'], function() {
 
 Route::resource('overtimes', 'OvertimesController');
 Route::get('overtimes/edit/{id}', 'OvertimesController@edit');
@@ -2824,7 +2854,9 @@ Route::get('itemcategories/edit/{id}', 'ItemcategoriesController@edit');
 Route::get('itemcategories/delete/{id}', 'ItemcategoriesController@destroy');
 Route::post('itemcategories/update/{id}', 'ItemcategoriesController@update');
 
+});
 
+Route::group(['before' => 'loggedin'], function() {
 Route::get('erpmigrate', function(){
 
   return View::make('erpmigrate');
@@ -3880,6 +3912,7 @@ Route::get('erpquotations/show/{id}', function($id){
   return View::make('erpquotations.show', compact('order'));
   
 });
+});
 
 Route::get('api/getrate', function(){
     $id = Input::get('option');
@@ -3961,7 +3994,7 @@ Route::get('api/getcontact', function(){
     return $driver_name->telephone_mobile;
 });
 
-
+Route::group(['before' => 'loggedin'], function() {
 Route::get('morgue', function(){
 
   return View::make('morgue');
@@ -4121,7 +4154,9 @@ Route::get('email/send_payments', 'ErpReportsController@sendMail_payments');
 Route::get('email/send_stock', 'ErpReportsController@sendMail_stock');
 Route::get('email/send_account', 'ErpReportsController@sendMail_account');
 
+});
 
+Route::group(['before' => 'loggedin'], function() {
 Route::resource('mails', 'MailsController');
 Route::get('mailtest', 'MailsController@test');
 
@@ -4140,6 +4175,9 @@ Route::get('mail', function(){
   return View::make('system.mail', compact('mail'));
 
 });  
+});
+
+Route::group(['before' => 'loggedin'], function() {
 
 Route::get('css/subordinateleave', function(){
 
@@ -4160,3 +4198,4 @@ Route::get('supervisorreject/{id}', 'LeaveapplicationsController@supervisorrejec
 
 
 
+});

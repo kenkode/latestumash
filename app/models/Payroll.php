@@ -1265,7 +1265,25 @@ public static $rules = [
     return round($nhifAmt,2);
    }
 
-    public static function netcalc($gross){
+   public static function dedcalc($gross,$deductions){
+    $total_ded = 0.00;
+    
+    $total_ded =static::payecalc($gross)+static::nssfcalc($gross)+static::nhifcalc($gross)+$deductions;
+
+    return round($total_ded,2);
+
+    }
+
+    public static function netcalc($gross,$deductions){
+    $total_net = 0.00;
+    
+    $total_net = $gross-static::payecalc($gross)-static::nssfcalc($gross)-static::nhifcalc($gross)-$deductions;
+
+    return round($total_net,2);
+
+    }
+
+    public static function ncalc($gross){
     $total_net = 0.00;
     
     $total_net = $gross-static::payecalc($gross)-static::nssfcalc($gross)-static::nhifcalc($gross);
